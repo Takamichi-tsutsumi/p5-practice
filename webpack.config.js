@@ -5,13 +5,21 @@ const path = require("path");
 
 module.exports = {
   mode: "development",
-  entry: "./src/index.js",
+  entry: {
+    index: "./src/index.js",
+    experiment: "./src/experiment.js"
+  },
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    filename: "[name].js",
+    path: __dirname + "/dist"
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    new HtmlWebpackPlugin({ template: "./src/index.html" })
+    new HtmlWebpackPlugin({ template: "./src/index.html", chunks: ["index"] }),
+    new HtmlWebpackPlugin({
+      filename: "experiment.html",
+      template: "src/experiment.html",
+      chunks: ["experiment"]
+    })
   ]
 };
