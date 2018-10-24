@@ -1,14 +1,18 @@
 import p5 from "p5";
 
 function sketch(p) {
-  let x = 0;
   p.setup = () => {
-    p.background(100);
+    p.createCanvas(640, 480);
   };
 
   p.draw = () => {
-    p.ellipse(x, p.height / 2, 20, 20);
-    x = x + 1;
+    if (p.mouseIsPressed) {
+      p.fill(0);
+    } else {
+      p.fill(255);
+    }
+
+    p.ellipse(p.mouseX, p.mouseY, 80, 80);
   };
 }
 
